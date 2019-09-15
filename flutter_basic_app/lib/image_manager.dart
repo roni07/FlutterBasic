@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_app/img_control.dart';
 import './images.dart';
 
 class ImageManger extends StatefulWidget {
@@ -26,19 +27,18 @@ class _ImageManagerState extends State<ImageManger> {
     super.didUpdateWidget(oldWidget);
   }
 
+  void _addImage(String _image) {
+    setState(() {
+      _imgs.add(_image);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
         margin: EdgeInsets.all(10.0),
-        child: RaisedButton(
-          color: Theme.of(context).primaryColor,
-            onPressed: () {
-              setState(() {
-                _imgs.add('New Image Adder');
-              });
-            },
-            child: Text('Add+')),
+        child: ImageControl(_addImage),
       ),
       Images(_imgs)
     ]);
